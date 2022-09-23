@@ -35,14 +35,61 @@ class ViewController: UIViewController {
         return textView
     }()
     
+    //buttons at bottom
+    //encapsulation principles so other classes dont have access to this
+    private let previousButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("PREV", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.gray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    private let nextButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("NEXT", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.setTitleColor(.black, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
         setupLayout()
+        setupBottomControls()
     }
 }
 
+//MARK: - BottonControls
+extension ViewController{
+    fileprivate func setupBottomControls(){
+//        view.addSubview(previousButton)
+        
+        previousButton.layer.cornerRadius = 15
+        
+        let yellowView = UIView()
+        yellowView.backgroundColor = .yellow
+        let greenView = UIView()
+        greenView.backgroundColor = .green
+        let blueView = UIView()
+        blueView.backgroundColor = .blue
+        
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton,greenView,nextButton])
+        bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomControlsStackView.distribution = .fillEqually
+        view.addSubview(bottomControlsStackView)
+        
+        NSLayoutConstraint.activate([
+            bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+}
+//MARK: -  Layout
 extension ViewController{
     private func setupLayout(){
         //adding a container at half layout
