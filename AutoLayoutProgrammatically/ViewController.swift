@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("PREV", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.gray, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -49,9 +49,19 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("NEXT", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.setTitleColor(.black, for: .normal)
+        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
+        button.setTitleColor(pinkColor, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private let pageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = 4
+        pc.pageIndicatorTintColor = .gray
+        pc.currentPageIndicatorTintColor = .red
+        return pc
     }()
     
     override func viewDidLoad() {
@@ -67,8 +77,6 @@ extension ViewController{
     fileprivate func setupBottomControls(){
 //        view.addSubview(previousButton)
         
-        previousButton.layer.cornerRadius = 15
-        
         let yellowView = UIView()
         yellowView.backgroundColor = .yellow
         let greenView = UIView()
@@ -76,15 +84,15 @@ extension ViewController{
         let blueView = UIView()
         blueView.backgroundColor = .blue
         
-        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton,greenView,nextButton])
+        let bottomControlsStackView = UIStackView(arrangedSubviews: [previousButton,pageControl,nextButton])
         bottomControlsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomControlsStackView.distribution = .fillEqually
+        bottomControlsStackView.distribution = .fillProportionally
         view.addSubview(bottomControlsStackView)
         
         NSLayoutConstraint.activate([
             bottomControlsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            bottomControlsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 20),
+            bottomControlsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             bottomControlsStackView.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
