@@ -54,15 +54,16 @@ class ViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     private let pageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
         pc.numberOfPages = 4
-        pc.pageIndicatorTintColor = .gray
-        pc.currentPageIndicatorTintColor = .red
+        let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 0.8)
+        pc.pageIndicatorTintColor = pinkColor.withAlphaComponent(0.3)
+        pc.currentPageIndicatorTintColor = pinkColor
         return pc
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
