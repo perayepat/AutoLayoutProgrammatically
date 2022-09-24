@@ -29,6 +29,7 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.setTitleColor(.black, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlePrev), for: .touchUpInside)
         return button
     }()
     private let nextButton: UIButton = {
@@ -38,12 +39,13 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
         let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
         button.setTitleColor(pinkColor, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleNext), for: .touchUpInside)
         return button
     }()
-    private let pageControl = {
+    private lazy var pageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
-        pc.numberOfPages = 4
+        pc.numberOfPages = pages.count
         let pinkColor = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 0.8)
         pc.pageIndicatorTintColor = pinkColor.withAlphaComponent(0.3)
         pc.currentPageIndicatorTintColor = pinkColor
@@ -62,6 +64,35 @@ class SwipingController: UICollectionViewController, UICollectionViewDelegateFlo
 
     
 }
+
+//Button action setup and Scroll view set up
+extension SwipingController{
+    @objc
+    private func handleNext(){
+        //min stops us from crashing
+        let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
+        let indexPath = IndexPath(item: nextIndex , section: 0)
+        pageControl.currentPage = nextIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    @objc
+    private func handlePrev(){
+        let nextIndex = max(pageControl.currentPage - 1, 0)
+        let indexPath = IndexPath(item: nextIndex , section: 0)
+        pageControl.currentPage = nextIndex
+        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+    
+    //making the scroll buttons track when you swipe
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x  = targetContentOffset.pointee.x
+        pageControl.currentPage = Int(x / view.frame.width)
+        //debug your postition in scroll view
+       // print(x, view.frame.width, x / view.frame.width)
+    }
+}
+//Button Setup
 extension SwipingController{
     fileprivate func setupBottomControls(){
 //        view.addSubview(previousButton)
@@ -86,6 +117,7 @@ extension SwipingController{
         ])
     }
 }
+//Collection View contorller setup
 extension SwipingController{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
