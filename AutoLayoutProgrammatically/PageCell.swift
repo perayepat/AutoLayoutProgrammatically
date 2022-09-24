@@ -9,7 +9,20 @@ import UIKit
 
 class PageCell: UICollectionViewCell{
     
-    let plateImageView: UIImageView = {
+    var page: Page?{
+        //check when our page is being set
+        didSet{
+            guard let unwrappedPage = page else { return }
+            plateImageView.image = UIImage(named: unwrappedPage.imageName)
+            
+            let attributedText = NSMutableAttributedString(string: unwrappedPage.headerText,attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)])
+            attributedText.append(NSAttributedString(string: " \n\n\n \(unwrappedPage.bodyText)", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
+            descriptionTextView.attributedText = attributedText
+            descriptionTextView.textAlignment = .center
+        }
+    }
+    
+    private let plateImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "restaurant"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -17,14 +30,14 @@ class PageCell: UICollectionViewCell{
     }()
     
     //textView
-    let descriptionTextView: UITextView = {
+    private let descriptionTextView: UITextView = {
         let textView = UITextView()
         let attributedText = NSMutableAttributedString(string: "Count your calories",attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 18)])
         attributedText.append(NSAttributedString(string: " \n\n\n Find the meals and snacks that add the unwanted or wanted weight to your waist", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 13), NSAttributedString.Key.foregroundColor: UIColor.gray]))
                               
         textView.attributedText = attributedText
 //        textView.text = "Count your calories"
-//        textView.font = UIFont.boldSystemFont(ofSize: 18)
+        textView.font = UIFont.boldSystemFont(ofSize: 18)
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isEditable = false
         textView.isScrollEnabled = false

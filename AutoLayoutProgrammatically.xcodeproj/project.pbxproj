@@ -16,6 +16,7 @@
 		43B9980728DE0350007A431F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9980628DE0350007A431F /* Extensions.swift */; };
 		43B9980928DE04E9007A431F /* SwippingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9980828DE04E9007A431F /* SwippingController.swift */; };
 		43B9980B28DED610007A431F /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9980A28DED610007A431F /* PageCell.swift */; };
+		43B9980D28DEDC5B007A431F /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B9980C28DEDC5B007A431F /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		43B9980628DE0350007A431F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		43B9980828DE04E9007A431F /* SwippingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwippingController.swift; sourceTree = "<group>"; };
 		43B9980A28DED610007A431F /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		43B9980C28DEDC5B007A431F /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				43B997F428DDD830007A431F /* SceneDelegate.swift */,
 				43B997F628DDD830007A431F /* ViewController.swift */,
 				43B9980828DE04E9007A431F /* SwippingController.swift */,
+				43B9980C28DEDC5B007A431F /* Page.swift */,
 				43B9980A28DED610007A431F /* PageCell.swift */,
 				43B997F828DDD830007A431F /* Main.storyboard */,
 				43B997FB28DDD832007A431F /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 				43B997F728DDD830007A431F /* ViewController.swift in Sources */,
 				43B9980B28DED610007A431F /* PageCell.swift in Sources */,
 				43B997F328DDD830007A431F /* AppDelegate.swift in Sources */,
+				43B9980D28DEDC5B007A431F /* Page.swift in Sources */,
 				43B997F528DDD830007A431F /* SceneDelegate.swift in Sources */,
 				43B9980728DE0350007A431F /* Extensions.swift in Sources */,
 			);
