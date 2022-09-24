@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//MARK: - View
 class PageCell: UICollectionViewCell{
     
     var page: Page?{
